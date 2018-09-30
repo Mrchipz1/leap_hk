@@ -13,7 +13,7 @@
 	    $error = true;
 	  }
 	}
-	$field = array('reg_no', 'mat_no', 'password',  'email', 'dept', 'category' 'act_code');
+	$field = array('reg_no', 'mat_no', 'password',  'email', 'dept', 'category', 'act_code');
 	if(!$error) {
 		$reg_no = $utility->clean_input($_POST['reg_no']);
 		$mat_no = $utility->clean_input($_POST['mat_no']);
