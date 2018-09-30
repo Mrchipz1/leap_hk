@@ -249,7 +249,21 @@ $(document).ready(function(){
   /* Form Controller */
   $('#reg-form').on('submit', (e)=>{
     e.preventDefault();
-    console.log($('#reg-form').serializeArray());
+    var fd = $('#reg-form').serializeArray();
+
+    console.log(fd);
+
+    $.ajax({
+      type: 'POST',
+      data: fd,
+      url: './backend/operation/Reg.php',
+      success: (res, e)=>{
+        console.log(res);
+      },
+      err: (e)=>{
+        console.log(e);
+      }
+    })
   })
 
 
