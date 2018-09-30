@@ -269,9 +269,8 @@ $(document).ready(function(){
       data: fd,
       url: './backend/operation/Reg.php',
       success: (res, e)=>{
-        console.log(res);
-        // console.log(JSON.parse(res));
-        if(res.status == 200){
+        var resp = JSON.parse(res);
+        if(resp.status == 200){
           swal(
             'Success',
             'Your entry was successful! Please check your email for further details.',
@@ -280,7 +279,7 @@ $(document).ready(function(){
         } else{
           swal(
             'Error',
-            res.message,
+            resp.message,
             'error'
           )
         }
