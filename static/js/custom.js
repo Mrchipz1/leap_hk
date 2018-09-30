@@ -251,14 +251,25 @@ $(document).ready(function(){
     e.preventDefault();
     var fd = $('#reg-form').serializeArray();
 
-    console.log(fd);
-
     $.ajax({
       type: 'POST',
       data: fd,
       url: './backend/operation/Reg.php',
       success: (res, e)=>{
         console.log(res);
+        if(res.status == 200){
+          swal(
+            'Success',
+            'Your entry was successful! Please check your email for further details.',
+            'success'
+          );
+        } else{
+          swal(
+            'Error',
+            res.message,
+            'error'
+          )
+        }
       },
       err: (e)=>{
         console.log(e);

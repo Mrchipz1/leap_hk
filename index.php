@@ -25,6 +25,7 @@
   <link href="static/css/color/default.css" rel="stylesheet" id="color_theme">
   <link rel="stylesheet" href="static/css/leapwise.css">
   <link rel="stylesheet" href="static/css/animate.css">
+  <link rel="stylesheet" href="static/css/swal.min.css">
   <link rel="stylesheet" href="static/css/izimodal.min.css">
   <!-- / -->
 
@@ -34,6 +35,8 @@
 
   <!-- custom -->
   <script src="static/js/custom.js"></script>
+  <script src="static/js/swal.min.js"></script>
+
 
   <!-- Favicon -->
   <link rel="icon" href="favicon.ico" />
@@ -110,8 +113,9 @@
           </div>
         </div>
     </div>
-     
-    <!-- Trigger to open Modal -->
+
+    <!-- <div id="response" class="iziModal" data-izimodal-group="alerts"></div> -->
+    <div id="res" data-iziModal-title="LEAP Hackathon"  data-iziModal-subtitle="Join the contest"  data-iziModal-icon="icon-home">
 
     <!-- Home Banner Start -->
    <section id="home" class="home-banner-01 gray-bg-g border-bottom">
