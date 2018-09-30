@@ -27,7 +27,7 @@
 		$act_status = 0;
 		if($password == $password){
 			$password = passwordHash::hash($password);
-			if($utility->validate_email($email)) {
+			if($utility->validate_email(strtolower($email))) {
 				$values = array('reg_no' => $reg_no, 'mat_no' => $mat_no,  'password' => $password, 'email' => $email,  'dept' => $dept, 'category' => $category, 'act_code'=>$act_code);
 				$auth = new Auth();
 				$main = $auth->register('participant', $field, $values, $act_code);
