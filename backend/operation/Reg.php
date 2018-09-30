@@ -30,7 +30,7 @@
 				$auth = new Auth();
 				$main = $auth->register('participant', $field, $values, $act_code);
 			}else {
-				$message = "Wrong email format, use an email with @lmuedu.ng domain";
+				$message = "Wrong email format, use an email with @lmu.edu.ng domain";
 				$code = 201;
 				$auth->out($code, $message);
 			}
