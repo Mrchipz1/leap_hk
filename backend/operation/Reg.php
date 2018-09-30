@@ -1,5 +1,7 @@
 <?php
-	session_start();
+	if (session_status() == PHP_SESSION_NONE) {
+	    session_start();
+	 }
 	require('./../util/functions.php');
 	require_once ('./../util/hashing.php');
 	$utility = new Utility();
