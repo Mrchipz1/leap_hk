@@ -492,7 +492,7 @@ class Auth extends Utility{
 		if($this->isExist($values['email'], 'participant') == NULL) {
 			// try {
 				$send_verify = new Mailing();
-				if($send_verify->mail_testtemp($values['email'], $code)){
+				if($send_verify->leap_mail($values['email'], $code)){
 					if($this->insert($table, $fields,  $values)){
 							$_SESSION['message'] = "Registered Successfully Please Check your Mail for Activation";
 							$_SESSION['messagetype'] ="alert alert-success";
@@ -725,7 +725,7 @@ class Mailing extends Utility{
 		require_once(dirname(__DIR__).'/config.php');
 	}
 
-	public function mail_testtemp($email, $token){
+	public function leap_mail($email, $token){
 		require_once(dirname(__DIR__).'/vendor/phpmailer/phpmailer/PHPMailerAutoload.php');
 		// TCP port to DBconect to
 			$this->mail = new PHPMailer;
@@ -742,7 +742,7 @@ class Mailing extends Utility{
 			$this->mail->Password = './configure.';                           // SMTP password
 			$this->mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
 			$this->mail->Port = 587;
-			$this->mail->setFrom('sunx.com', 'SunX  - Verification Email');
+			$this->mail->setFrom('leap.lmu.edu.ng', 'LMU LEAP  - Verification Email');
 			
 			$this->mail->addAddress($email, ''); 
        // Add attachments
@@ -751,17 +751,17 @@ class Mailing extends Utility{
 
 			$this->mail->Subject = '3plecoin Verification Email';
 			$this->mail->From = "adeojo.emmanuel@lmu.edu.ng";
-			$this->mail->FromName = "SunX";
-			$this->mail->Subject = "SunX  - Verification Email";
+			$this->mail->FromName = "LMU LEAP";
+			$this->mail->Subject = "LMU LEAP  - Verification Email";
 			$msg = '
 				<div style="max-width:550px; min-width:320px;  background-color: white; border: 1px solid #DDDDDD; margin-right: auto; margin-left: auto;">
 				  <div style="margin-left:30px;margin-right:30px;">
 				    <p>&nbsp;</p>
-				    <p><a href="https://logico.com.ar" style="text-decoration:none;font-family:Verdana, Geneva, sans-serif;font-weight: bold; color: #3D3D3D;font-size: 15px;">yourwebsite.com</a></p>
+				    <p><a href="http://leap.lmu.edu.ng" style="text-decoration:none;font-family:Verdana, Geneva, sans-serif;font-weight: bold; color: #3D3D3D;font-size: 15px;">leap.lmu.edu.ng</a></p>
 				    <hr style="margin-top:10px;margin-bottom:65px;border:none;border-bottom:1px solid red;"/>
 				    <h1 style="font-family: Tahoma, Geneva, sans-serif; font-weight: normal; color: #2A2A2A; text-align: center; margin-bottom: 65px;font-size: 20px; letter-spacing: 6px;font-weight: normal; border: 2px solid black; padding: 15px;">THANKS FOR  REGISTERING!</h1>
 				    <h3 style="font-family:Palatino Linotype, Book Antiqua, Palatino, serif;font-style:italic;font-weight:500;">Your Entry Has Been Received:</h3>
-				    <p style="font-family:Palatino Linotype, Book Antiqua, Palatino, serif;font-size: 15px; margin-left: auto; margin-right: auto; text-align: justify;color: #666;line-height:1.5;margin-bottom:75px;">Leap coding challenge is a 5-day contest aimed at finding the fastest and coolest Code Ninjas in Landmark University who are willing to step up for some recognition. Taking part in this contest gives you a chance to win Cool Prices along with other goodies such as a tech stickesrs and a  chance to sign your name on our leap Wall Of Fame.</p>
+				    <p style="font-family:Palatino Linotype, Book Antiqua, Palatino, serif;font-size: 15px; margin-left: auto; margin-right: auto; text-align: justify;color: #666;line-height:1.5;margin-bottom:75px;">Leap coding challenge is a 5-day contest aimed at finding the fastest and coolest Code Ninjas in Landmark University who are willing to step up for some recognition. Taking part in this contest gives you a chance to win Cool Prices along with other goodies such as a tech stickers and a  chance to sign your name on our leap Wall Of Fame.</p>
 				    <table style="width:100%;">
 				      <th>
 				        <td style="width:25%;"></td>
@@ -770,7 +770,7 @@ class Mailing extends Utility{
 				      </th>
 				    </table>
 				    <hr style="margin-top:10px;margin-top:75px;"/>
-				    <p style="text-align:center;margin-bottom:15px;"><small style="text-align:center;font-family:Courier New, Courier, monospace;font-size:10px;color#666;">Organized with  <span style="color:red;">&hearts;</span> by FStackDev</small>GDSC Landmark University<a href="https://fstackdev.net/" style="color:#666;"> . NACOSS LMU</a> |</p>
+				    <p style="text-align:center;margin-bottom:15px;"><small style="text-align:center;font-family:Courier New, Courier, monospace;font-size:10px;color#666;">Organized with  <span style="color:red;">&hearts; </span>  </small> <a href="https://fstackdev.net/" style="color:#666;"> By FStackDev | GDSC Landmark University | NACOSS LMU</a></p>
 				    <p>&nbsp;</p>
 				  </div>
 				</div>';
