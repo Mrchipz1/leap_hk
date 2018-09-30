@@ -269,6 +269,7 @@ $(document).ready(function(){
       data: fd,
       url: './backend/operation/Reg.php',
       success: (res, e)=>{
+        console.log(res);
         // console.log(JSON.parse(res));
         if(res.status == 200){
           swal(
