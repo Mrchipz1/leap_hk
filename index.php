@@ -131,8 +131,8 @@
           <div class="col col-md-12 col-lg-6 col-xl-6 p-70px-tb md-p-30px-b sm-p-60px-t m-50px-t">
             <div class="home-text-center p-50px-r md-p-0px-r">
               <h1 class="font-alt animated fadeInUp">LEAP Hackathon</h1>
-              <p class="animated fadeIn">
-                The Learn, Experience and Program (LEAP) hackathon is a 5-day design and coding contest aimed at training and finding the fastest and sassiest designers and developers in Landmark University who are willing to step up their game, apply their skills and gain some recognition (and of course, win amazing prizes 😜).
+              <p class="animated fadeIn" style="text-align: justify;">
+                The Learn, Experience and Program (LEAP) hackathon is a 5-day design and coding contest aimed at training and finding the fastest and sassiest designers and developers in Landmark University who are willing to step up their game, apply their skills in solving challenges, and gain some recognition (and of course, win amazing prizes 😜).
               </p>
              <h4 style="margin-bottom: 5%; color: #DB3726; opacity: 0.8;" class="animated pulse infinite">Are you up for the challenge?</h4>
              <span class="animate slideInUp">Time left: <h3 id="demo" style="display: inline;"></h3></span>
@@ -140,13 +140,13 @@
               <div class="subscribe-box"  style="margin-top: 5%;">
                 <form>
                   <input placeholder="you@lmu.edu.ng" class="form-control animated fadeInLeft" type="text" name="email" id="first-email" required>
-                  <button class="m-btn m-btn-theme2nd animated fadeInRight trigger" id="want-in" data-izimodal-open="#modal" data-izimodal-transitionin="fadeInDown" role="submit">I want in</button>
+                  <button class="m-btn m-btn-theme2nd animated fadeInRight trigger" id="want-in" role="submit">I want in</button>
                 </form>
               </div>
             </div> <!-- home-text-center -->
           </div> 
           <div class="col-md-12 col-lg-6 col-xl-6 home-right m-50px-t md-m-0px-t">
-            <div class="home-right-inner">
+            <div class="home-right-inner animated zoomIn">
               <img src="static/img/zone-5.svg" title="" alt="">
             </div>
           </div><!-- col -->

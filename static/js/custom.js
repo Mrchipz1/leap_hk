@@ -246,6 +246,19 @@ $(document).ready(function(){
     $('#email').val($('#first-email').val());
   });
 
+  $(document).on('click', '.trigger', function (event) {
+    event.preventDefault();
+    if($('#first-email').val() == ""){
+      console.log('No email yet');
+      $('#first-email').removeClass('fadeInLeft')
+      $('#first-email').addClass('shake input-error')
+    } else {
+      $('#modal').iziModal('open');
+    }
+    // $('#modal').iziModal('setZindex', 99999);
+    // $('#modal').iziModal('open', { zindex: 99999 });
+  });
+
   /* Form Controller */
   $('#reg-form').on('submit', (e)=>{
     e.preventDefault();
@@ -256,7 +269,7 @@ $(document).ready(function(){
       data: fd,
       url: './backend/operation/Reg.php',
       success: (res, e)=>{
-        console.log(res);
+        // console.log(JSON.parse(res));
         if(res.status == 200){
           swal(
             'Success',
