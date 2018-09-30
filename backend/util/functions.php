@@ -22,7 +22,7 @@ class Utility {
 	public function getting_level($total_amount){
 		if($total_amount == 0){
 			return 0;
-		}else{
+		}else{ 
 			return abs($total_amount / 10);
 		}
 	}
@@ -151,7 +151,7 @@ class Utility {
 			$newpasshash = passwordHash::hash($newpass);
 
 
-			$q1 = $this->getOne("SELECT * FROM passrecovery where email = '$umail' and recovery_code = '$hash' and status = 0 ORDER BY id DESC");
+			$q1 = $this->getOne("SELECT * FROM participant where email = '$umail' and recovery_code = '$hash' and status = 0 ORDER BY id DESC");
 			$q2 = $this->DBcon->query("UPDATE passrecovery SET status = 1 WHERE email = '$umail'");
 			$q3 = $this->DBcon->query("UPDATE customers SET password = '$newpasshash', cleartext = '$newpass' WHERE email = '$umail'");
 
