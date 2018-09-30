@@ -16,8 +16,8 @@
       if ( in_array( $domain, $this->accepted_domains ) ) {
         return true;
       }
-      // return false;
-      return true;
+      return false;
+      // return true;
     }
 
     private function get_domain($email_address) {
