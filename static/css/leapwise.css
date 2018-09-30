@@ -270,3 +270,15 @@ body{
   cursor: pointer;
   visibility: hidden;
 }
+
+.load{
+  width: 300px;
+  height: 300px;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}

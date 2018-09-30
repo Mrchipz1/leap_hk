@@ -244,5 +244,13 @@
 $(document).ready(function(){
   $("#want-in").on('click', ()=>{
     $('#email').val($('#first-email').val());
+  });
+
+  /* Form Controller */
+  $('#reg-form').on('submit', (e)=>{
+    e.preventDefault();
+    console.log($('#reg-form').serializeArray());
   })
+
+
 })
