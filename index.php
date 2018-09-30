@@ -45,7 +45,6 @@
 
   <!-- Loading -->
   <div id="loading">
-    <!-- <div class="load-circle"><span class="one"></span></div> -->
     <div class="load"><img src="./static/img/loader.gif" alt=""></div>
   </div>
   <!-- / -->
@@ -56,11 +55,7 @@
     <div id="modal" data-iziModal-title="LEAP Hackathon"  data-iziModal-subtitle="Join the contest"  data-iziModal-icon="icon-home">
         <!-- Modal content -->
         <div class="form">
-          <!-- <div class="form-toggle"></div> -->
           <div class="form-panel one">
-            <!-- <div class="form-header">
-              <h3>Join the contest</h5>
-            </div> -->
             <div class="form-content">
               <form id="reg-form" >
                 <div class="form-group">
@@ -124,7 +119,7 @@
     <div id="particles-box"></div>
       <div class="container">
         <div class="row full-screen align-items-center">
-          <div class="col col-md-12 col-lg-6 col-xl-6 p-80px-tb md-p-30px-b sm-p-60px-t m-50px-t">
+          <div class="col col-md-12 col-lg-6 col-xl-6 p-70px-tb md-p-30px-b sm-p-60px-t m-50px-t">
             <div class="home-text-center p-50px-r md-p-0px-r">
               <h1 class="font-alt animated fadeInUp">LEAP Hackathon</h1>
               <p class="animated fadeIn">
@@ -154,9 +149,6 @@
     </section>
     <!-- / -->
 
-    <!--  -->
-    aoishfoih
-
   <!-- Plugins -->
   <script src="static/plugin/bootstrap/js/popper.min.js"></script>
   <script src="static/plugin/bootstrap/js/bootstrap.min.js"></script>
@@ -166,12 +158,6 @@
 
   <script type="text/javascript">
     $("#modal").iziModal();
-    /*$(document).on('click', '.trigger', function (event) {
-      event.preventDefault();
-      // $('#modal').iziModal('setZindex', 99999);
-      // $('#modal').iziModal('open', { zindex: 99999 });
-      $('#modal').iziModal('open');
-  });*/
   </script>
 </body>
 <!-- Body End -->
