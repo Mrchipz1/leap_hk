@@ -7,10 +7,10 @@ define('DB_DATABASE', 'leap_hk');
 
 
 //replace the valid_email with a valid active gmail address
-define('SMTP_USER', 'adeojo.emmanuel@lmu.edu.ng');
+define('SMTP_USER', 'dsc@lmu.edu.ng');
 
 //replace password with the password of the same account
-define('SMTP_PASSWORD', './configure.');
+define('SMTP_PASSWORD', 'Grace!23*');
 
 // domain name
 define('HOST', 'http://leap.lmu.edu.ng');

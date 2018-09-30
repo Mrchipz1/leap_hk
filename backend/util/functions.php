@@ -483,6 +483,16 @@ class Auth extends Utility{
 			$this->redirect('./../../password/reset.php');
 		}
 	}
+
+	public function push($what){
+		echo json_encode($what);
+	}
+
+	public function out($code, $message){
+		$response['status'] = $code; 
+		$response['message'] = $message;
+		$this->push($response);
+	}
 		    
 	//register function
 	public function register($table, array $fields, array $values, $code) {
@@ -494,18 +504,18 @@ class Auth extends Utility{
 				$send_verify = new Mailing();
 				if($send_verify->leap_mail($values['email'], $code)){
 					if($this->insert($table, $fields,  $values)){
-							$_SESSION['message'] = "Registered Successfully Please Check your Mail for Activation";
-							$_SESSION['messagetype'] ="alert alert-success";
-							$this->redirect('./../../index.php');
+							$message = "Registered Successfully Please Check your Mail for Activation";
+							$code = 200;
+							$this->out($code, $message));
 					}else{
-						$_SESSION['message'] = "Error inserting";
-						$_SESSION['messagetype'] ="alert alert-danger";
-						$this->redirect('./../../index.php');
+						$message = "Error inserting";
+						$code = 201;
+						$this->out($code, $message));
 					}
 				}else{
-					$_SESSION['message'] = "mailing error";
-					$_SESSION['messagetype'] ="alert alert-danger";
-					$this->redirect('./../../index.php');
+					$message = "mailing error";
+					$code = 201;
+					$this->out($code, $message));
 				}
 			// } catch(PDOException $ex) {
 			// 		$_SESSION['message'] = "Registration Failed";
@@ -513,9 +523,9 @@ class Auth extends Utility{
 			// 		$this->redirect('./../../register.);
 			// }
 		}else{
-			$_SESSION['message'] = "User Already Registered";
-			$_SESSION['messagetype'] ="alert alert-danger";
-			$this->redirect('./../../index.php');
+			$message = "User Already Registered";
+			$code = 201;
+			$this->out($code, $message));
 		}	
 	}
 
@@ -583,7 +593,8 @@ class Auth extends Utility{
 			echo "PDO did not work";
 		}
 	}
-
+	
+	
 	public function activelogin($email, $password, $table) {
 		try {
 			$stmt = $this->DBcon->prepare("SELECT _id, email,password FROM $table WHERE (email=:email)"); 
@@ -737,9 +748,9 @@ class Mailing extends Utility{
 			$this->mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
 			$this->mail->SMTPAuth = true;                               // Enable SMTP authentication
 			// $this->mail->Username = SMTP_USER;                 // SMTP username
-			$this->mail->Username = 'adeojo.emmanuel@lmu.edu.ng';                 // SMTP username
+			$this->mail->Username = 'dsc@lmu.edu.ng';                 // SMTP username
 			// $this->mail->Password = SMTP_PASSWORD;                           // SMTP password
-			$this->mail->Password = './configure.';                           // SMTP password
+			$this->mail->Password = 'Grace!23*';                           // SMTP password
 			$this->mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
 			$this->mail->Port = 587;
 			$this->mail->setFrom('leap.lmu.edu.ng', 'LMU LEAP  - Verification Email');
@@ -770,7 +781,7 @@ class Mailing extends Utility{
 				      </th>
 				    </table>
 				    <hr style="margin-top:10px;margin-top:75px;"/>
-				    <p style="text-align:center;margin-bottom:15px;"><small style="text-align:center;font-family:Courier New, Courier, monospace;font-size:10px;color#666;">Organized with  <span style="color:red;">&hearts; </span>  </small> <a href="https://fstackdev.net/" style="color:#666;"> By FStackDev | GDSC Landmark University | NACOSS LMU</a></p>
+				    <p style="text-align:center;margin-bottom:15px;"><small style="text-align:center;font-family:Courier New, Courier, monospace;font-size:10px;color#666;">Organized with  <span style="color:red;">&hearts; </span>  </small> <a href="https://fstackdev.net/" style="color:#666;"> By FStackDev </a> | <a href="#" style="color:#666;"> GDSC Landmark University | NACOSS LMU</a></p>
 				    <p>&nbsp;</p>
 				  </div>
 				</div>';

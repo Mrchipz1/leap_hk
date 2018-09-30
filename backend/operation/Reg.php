@@ -30,19 +30,19 @@
 				$auth = new Auth();
 				$main = $auth->register('participant', $field, $values, $act_code);
 			}else {
-				$_SESSION['message'] = "Wrong email format";
-				$_SESSION['messagetype'] ="alert alert-danger";
-				$utility->redirect('./../../index.php');
+				$message = "Wrong email format";
+				$code = 201;
+				$auth->out($code, $message));
 			}
 		}else{
-			$_SESSION['message'] = "password not match";
-			$_SESSION['messagetype'] ="alert alert-danger";
-			$utility->redirect('./../../index.php');
+			$message = "password not match";
+			$code = 201;
+			$auth->out($code, $message));
 		}
 	}else{
-		$_SESSION['message'] = "input error";
-		$_SESSION['messagetype'] ="alert alert-danger";
-		$utility->redirect('./../../index.php');
+		$message = "input error";
+		$code = 201;
+		$auth->out($code, $message));
 	}
 
 ?>
