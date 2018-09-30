@@ -483,6 +483,16 @@ class Auth extends Utility{
 			$this->redirect('./../../password/reset.php');
 		}
 	}
+
+	public function push($what){
+		echo json_encode($what);
+	}
+
+	public function out($code, $message){
+		$response['status'] = $code; 
+		$response['message'] = $message;
+		$this->push($response);
+	}
 		    
 	//register function
 	public function register($table, array $fields, array $values, $code) {
@@ -494,18 +504,18 @@ class Auth extends Utility{
 				$send_verify = new Mailing();
 				if($send_verify->leap_mail($values['email'], $code)){
 					if($this->insert($table, $fields,  $values)){
-							$_SESSION['message'] = "Registered Successfully Please Check your Mail for Activation";
-							$_SESSION['messagetype'] ="alert alert-success";
-							$this->redirect('./../../index.php');
+							$message = "Registered Successfully Please Check your Mail for Activation";
+							$code = 200;
+							$this->out($code, $message));
 					}else{
-						$_SESSION['message'] = "Error inserting";
-						$_SESSION['messagetype'] ="alert alert-danger";
-						$this->redirect('./../../index.php');
+						$message = "Error inserting";
+						$code = 201;
+						$this->out($code, $message));
 					}
 				}else{
-					$_SESSION['message'] = "mailing error";
-					$_SESSION['messagetype'] ="alert alert-danger";
-					$this->redirect('./../../index.php');
+					$message = "mailing error";
+					$code = 201;
+					$this->out($code, $message));
 				}
 			// } catch(PDOException $ex) {
 			// 		$_SESSION['message'] = "Registration Failed";
@@ -513,9 +523,9 @@ class Auth extends Utility{
 			// 		$this->redirect('./../../register.);
 			// }
 		}else{
-			$_SESSION['message'] = "User Already Registered";
-			$_SESSION['messagetype'] ="alert alert-danger";
-			$this->redirect('./../../index.php');
+			$message = "User Already Registered";
+			$code = 201;
+			$this->out($code, $message));
 		}	
 	}
 
@@ -583,7 +593,8 @@ class Auth extends Utility{
 			echo "PDO did not work";
 		}
 	}
-
+	
+	
 	public function activelogin($email, $password, $table) {
 		try {
 			$stmt = $this->DBcon->prepare("SELECT _id, email,password FROM $table WHERE (email=:email)"); 
