@@ -151,22 +151,16 @@ class Utility {
 			$newpasshash = passwordHash::hash($newpass);
 
 
-			$q1 = $this->getOne("SELECT * FROM participant where email = '$umail' and recovery_code = '$hash' and status = 0 ORDER BY id DESC");
-			$q2 = $this->DBcon->query("UPDATE passrecovery SET status = 1 WHERE email = '$umail'");
-			$q3 = $this->DBcon->query("UPDATE customers SET password = '$newpasshash', cleartext = '$newpass' WHERE email = '$umail'");
+			$q1 = $this->getOne("SELECT * FROM participant where email = '$umail' and recovery = '$hash' ORDER BY id DESC");
+			$q3 = $this->DBcon->query("UPDATE participant SET password = '$newpasshash' WHERE email = '$umail' and recovery='$hash'");
 
 			if($q1){ //if the person has a record in the passreset tbl then update the pass reset table
-				if($q2){ //if updated pass table  then update gen usr tbl
-					if($q3){ //if updated gen usr tablle return true and end;
-						return true;
-						// return "true with q3";
-					} else {
-						return false;
-						// return "error with q3";
-					}
+				if($q3){ //if updated gen usr tablle return true and end;
+					return true;
+					// return "true with q3";
 				} else {
 					return false;
-					// return "error with q2";
+					// return "error with q3";
 				}
 			} else {
 				return false;
@@ -451,36 +445,37 @@ class Auth extends Utility{
 		require_once 'hashing.php';
 		$token = $this->random_char();
 		$param = $this->clean_input($gparam);
-		$sql = "SELECT * FROM customers WHERE email = :email";
+		$sql = "SELECT * FROM participant WHERE email = :email";
 		if($this->isin($param, $sql) !== NULL) {
 			try {
 				$send_verify = new Mailing();
-				if($send_verify->passrecover($param, $token)){
-					$fields = array('userid', 'recovery_code');
-					$values = array($_SESSION['user_id'], $token);
-					if($this->insert($table, $fields,  $values)){
-						$_SESSION['message'] = "recover link has been sent to your mail";
-						$_SESSION['messagetype'] ="alert alert-danger";
-						$this->redirect('./../../password/reset.php');
-					}else{
-						$_SESSION['message'] = "Error inserting";
-						$_SESSION['messagetype'] ="alert alert-danger";
-						$this->redirect('./../../password/reset.php');
+				if($send_verify->leap_passRecovery($param, $token)){
+					$activate = "UPDATE participant SET act_status = 1 WHERE act_code = '$ref' and email = '$mbox'";
+					if($this->run_query($activate)){
+						// return "done";
+						$message = "reset password link has been sent to your mail";
+						$code = 200;
+						$this->out($code, $message);
+					} else {
+						// return "couldn't verify";
+						$message = "couldn't verify";
+						$code = 201;
+						$this->out($code, $message);
 					}
 				}else{
-					$_SESSION['message'] = "mailing error";
-					$_SESSION['messagetype'] ="alert alert-danger";
-					$this->redirect('./../../register.php');
+					$message = "mailing error";
+					$code = 201;
+					$this->out($code, $message);
 				}
 			} catch(PDOException $ex) {
-					$_SESSION['message'] = "Registration Failed";
-					$_SESSION['messagetype'] ="alert alert-danger";
-					$this->redirect('./../../password/reset.php');
+					$message = "Registration Failed";
+					$code = 201;
+					$this->out($code, $message);
 			}
 		}else{
-			$_SESSION['message'] = "user not registered";
-			$_SESSION['messagetype'] ="alert alert-danger";
-			$this->redirect('./../../password/reset.php');
+			$message = "user not registered";
+			$code = 201;
+			$this->out($code, $message);
 		}
 	}
 
@@ -493,6 +488,7 @@ class Auth extends Utility{
 		$response['message'] = $message;
 		$this->push($response);
 	}
+
 		    
 	//register function
 	public function register($table, array $fields, array $values, $code) {
@@ -736,6 +732,67 @@ class Mailing extends Utility{
 		require_once(dirname(__DIR__).'/config.php');
 	}
 
+		public function leap_passRecovery($email, $token){
+		require_once(dirname(__DIR__).'/vendor/phpmailer/phpmailer/PHPMailerAutoload.php');
+		// TCP port to DBconect to
+			$this->mail = new PHPMailer;
+			$this->mail->isSMTP(); 
+			// $this->mail->isMail();  
+			// $this->mail->SMTPDebug = 3;                               // Enable verbose debug output
+			                                     // Set mailer to use SMTP
+			//add these codes if not written
+			$this->mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+			$this->mail->SMTPAuth = true;                               // Enable SMTP authentication
+			// $this->mail->Username = SMTP_USER;                 // SMTP username
+			$this->mail->Username = 'dsc@lmu.edu.ng';                 // SMTP username
+			// $this->mail->Password = SMTP_PASSWORD;                           // SMTP password
+			$this->mail->Password = 'Grace!23*';                           // SMTP password
+			$this->mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+			$this->mail->Port = 587;
+			$this->mail->setFrom('leap.lmu.edu.ng', 'LMU LEAP  - Verification Email');
+			
+			$this->mail->addAddress($email, ''); 
+       // Add attachments
+			    // Optional name
+			$this->mail->isHTML(true);                                  // Set email format to HTML
+
+			$this->mail->Subject = 'Password Recovery';
+			$this->mail->From = "adeojo.emmanuel@lmu.edu.ng";
+			$this->mail->FromName = "LMU LEAP";
+			$this->mail->Subject = "LMU LEAP  - Password Recovery";
+			$msg = '
+				<div style="max-width:550px; min-width:320px;  background-color: white; border: 1px solid #DDDDDD; margin-right: auto; margin-left: auto;">
+				  <div style="margin-left:30px;margin-right:30px;">
+				    <p>&nbsp;</p>
+				    <p><a href="http://leap.lmu.edu.ng" style="text-decoration:none;font-family:Verdana, Geneva, sans-serif;font-weight: bold; color: #3D3D3D;font-size: 15px;">leap.lmu.edu.ng</a></p>
+				    <hr style="margin-top:10px;margin-bottom:65px;border:none;border-bottom:1px solid red;"/>
+				    <h1 style="font-family: Tahoma, Geneva, sans-serif; font-weight: normal; color: #2A2A2A; text-align: center; margin-bottom: 65px;font-size: 20px; letter-spacing: 6px;font-weight: normal; border: 2px solid black; padding: 15px;">THANKS FOR  REGISTERING!</h1>
+				    <h3 style="font-family:Palatino Linotype, Book Antiqua, Palatino, serif;font-style:italic;font-weight:500;">Your Entry Has Been Received:</h3>
+				    <p style="font-family:Palatino Linotype, Book Antiqua, Palatino, serif;font-size: 15px; margin-left: auto; margin-right: auto; text-align: justify;color: #666;line-height:1.5;margin-bottom:75px;">Leap coding challenge is a 5-day contest aimed at finding the fastest and coolest Code Ninjas in Landmark University who are willing to step up for some recognition. Taking part in this contest gives you a chance to win Cool Prices along with other goodies such as a tech stickers and a  chance to sign your name on our leap Wall Of Fame.</p>
+				    <table style="width:100%;">
+				      <th>
+				        <td style="width:25%;"></td>
+				        <td style="background-color:black;with:50%;text-align:center;padding:15px;"><a href="http://localhost/leap_hk/activation/index.php?email='. $email .'&action=reset&token='.$token . '"  style="margin-left: auto; margin-right: auto;text-decoration:none;color: white;text-align:center;font-family:Courier New, Courier, monospace;font-weight:600;letter-spacing:2px;background-color:black;padding:15px;">CLICK TO ACTIVATE</a></td>
+				        <td style="width:25%;"></td>
+				      </th>
+				    </table>
+				    <hr style="margin-top:10px;margin-top:75px;"/>
+				    <p style="text-align:center;margin-bottom:15px;"><small style="text-align:center;font-family:Courier New, Courier, monospace;font-size:10px;color#666;">Organized with  <span style="color:red;">&hearts; </span>  </small> <a href="https://fstackdev.net/" style="color:#666;"> By FStackDev </a> | <a href="#" style="color:#666;"> GDSC Landmark University | NACOSS LMU</a></p>
+				    <p>&nbsp;</p>
+				  </div>
+				</div>';
+				// echo $this->mail->Body;
+			$this->mail->Body = $msg;
+			$this->mail->IsHTML(true);
+
+			if($this->mail->send()) {
+			    return true;
+			} else {
+			    // return false;
+			    return 'Mailer error: ' . $this->mail->ErrorInfo;
+			}
+	}
+
 	public function leap_mail($email, $token){
 		require_once(dirname(__DIR__).'/vendor/phpmailer/phpmailer/PHPMailerAutoload.php');
 		// TCP port to DBconect to
@@ -760,7 +817,7 @@ class Mailing extends Utility{
 			    // Optional name
 			$this->mail->isHTML(true);                                  // Set email format to HTML
 
-			$this->mail->Subject = '3plecoin Verification Email';
+			$this->mail->Subject = 'LMU LEAP Verification Email';
 			$this->mail->From = "adeojo.emmanuel@lmu.edu.ng";
 			$this->mail->FromName = "LMU LEAP";
 			$this->mail->Subject = "LMU LEAP  - Verification Email";
