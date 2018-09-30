@@ -506,16 +506,16 @@ class Auth extends Utility{
 					if($this->insert($table, $fields,  $values)){
 							$message = "Registered Successfully Please Check your Mail for Activation";
 							$code = 200;
-							$this->out($code, $message));
+							$this->out($code, $message);
 					}else{
 						$message = "Error inserting";
 						$code = 201;
-						$this->out($code, $message));
+						$this->out($code, $message);
 					}
 				}else{
 					$message = "mailing error";
 					$code = 201;
-					$this->out($code, $message));
+					$this->out($code, $message);
 				}
 			// } catch(PDOException $ex) {
 			// 		$_SESSION['message'] = "Registration Failed";
@@ -525,7 +525,7 @@ class Auth extends Utility{
 		}else{
 			$message = "User Already Registered";
 			$code = 201;
-			$this->out($code, $message));
+			$this->out($code, $message);
 		}	
 	}
 

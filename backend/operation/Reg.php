@@ -32,17 +32,17 @@
 			}else {
 				$message = "Wrong email format";
 				$code = 201;
-				$auth->out($code, $message));
+				$auth->out($code, $message);
 			}
 		}else{
 			$message = "password not match";
 			$code = 201;
-			$auth->out($code, $message));
+			$auth->out($code, $message);
 		}
 	}else{
 		$message = "input error";
 		$code = 201;
-		$auth->out($code, $message));
+		$auth->out($code, $message);
 	}
 
 ?>
