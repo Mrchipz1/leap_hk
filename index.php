@@ -77,21 +77,21 @@
                 </div>
                 <div class="form-group">
                   <label for="regno">Reg. Number</label>
-                  <input type="text" id="regno" name="regno" required="required"/>
+                  <input type="text" id="regno" name="reg_no" required="required"/>
                 </div>
                 <div class="form-group">
                   <label for="matno">Matric. Number</label>
-                  <input type="text" id="matno" name="matno" required="required"/>
+                  <input type="text" id="matno" name="mat_no" required="required"/>
                 </div>
                 <div class="form-group">
                   <label for="department">Department</label>
-                  <input type="text" id="department" name="department" required="required"/>
+                  <input type="text" id="department" name="dept" required="required"/>
                 </div>
                 <div class="form-group">
                   <label for="">Category</label>
                   <div class="row" style="width: 110%;">
                       <div class="inputGroup col-md-6" style="min-width: 50%;">
-                        <input id="radio1" name="currency" value="1" type="radio"/>
+                        <input id="radio1" name="category" value="1" type="radio"/>
                         <label for="radio1">
                             <img src="./static/img/code.svg" style="width: 35px; height: 50px;"/>
                             <span style="font-weight: bolder;">Coding</span>
@@ -99,7 +99,7 @@
                       </div>
                       <div class="inputGroup col-md-6">
                         <!--<input id="radio2" name="radio" type="radio"/>-->
-                        <input id="radio2" name="currency" value="2" type="radio"/>
+                        <input id="radio2" name="category" value="2" type="radio"/>
                         <label for="radio2">
                             <img src="./static/img/design.svg" style="width: 33px; height: 50px;"/>
                             <span style="font-weight: bolder;">Design</span>
