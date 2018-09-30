@@ -489,40 +489,81 @@ class Auth extends Utility{
 		$this->push($response);
 	}
 
-		    
+	public function isExistmatno($mat_no, $table) {
+		try {
+			$stmt = $this->DBcon->prepare("SELECT * FROM $table WHERE mat_no = :mat_no");
+			$stmt->execute(array(':mat_no' => $mat_no));
+			$res = $stmt->fetch(PDO::FETCH_ASSOC);
+			if($stmt->rowCount() > 0){
+			    return $res;
+			}else{
+			    return NULL;
+			}
+		} catch(PDOException $ex) {
+			return NULL;
+		}
+	}
+
+	public function isExistregno($reg_no, $table) {
+		try {
+			$stmt = $this->DBcon->prepare("SELECT * FROM $table WHERE reg_no = :reg_no");
+			$stmt->execute(array(':reg_no' => $reg_no));
+			$res = $stmt->fetch(PDO::FETCH_ASSOC);
+			if($stmt->rowCount() > 0){
+			    return $res;
+			}else{
+			    return NULL;
+			}
+		} catch(PDOException $ex) {
+			return NULL;
+		}
+	}
+
 	//register function
 	public function register($table, array $fields, array $values, $code) {
 		//session_start();
 		require_once 'hashing.php';
 		$token = $this->random_char();
-		if($this->isExist($values['email'], 'participant') == NULL) {
-			// try {
-				$send_verify = new Mailing();
-				if($send_verify->leap_mail($values['email'], $code)){
-					if($this->insert($table, $fields,  $values)){
-							$message = "Registered Successfully Please Check your Mail for Activation";
-							$code = 200;
+		if($this->isExistmatno($values['mat_no'], 'participant') == NULL){
+			if($this->isExistregno($values['reg_no'], 'participant') == NULL){
+				if($this->isExist($values['email'], 'participant') == NULL) {
+					// try {
+						$send_verify = new Mailing();
+						if($send_verify->leap_mail($values['email'], $code)){
+							if($this->insert($table, $fields,  $values)){
+									$message = "Registered Successfully Please Check your Mail for Activation";
+									$code = 200;
+									$this->out($code, $message);
+							}else{
+								$message = "Error inserting";
+								$code = 201;
+								$this->out($code, $message);
+							}
+						}else{
+							$message = "mailing error";
+							$code = 201;
 							$this->out($code, $message);
-					}else{
-						$message = "Error inserting";
-						$code = 201;
-						$this->out($code, $message);
-					}
+						}
+					// } catch(PDOException $ex) {
+					// 		$_SESSION['message'] = "Registration Failed";
+					// 		$_SESSION['messagetype'] ="alert alert-danger";
+					// 		$this->redirect('./../../register.);
+					// }
 				}else{
-					$message = "mailing error";
+					$message = "User Already Registered";
 					$code = 201;
 					$this->out($code, $message);
 				}
-			// } catch(PDOException $ex) {
-			// 		$_SESSION['message'] = "Registration Failed";
-			// 		$_SESSION['messagetype'] ="alert alert-danger";
-			// 		$this->redirect('./../../register.);
-			// }
+			}else{
+				$message = "RegNo already registered, try another or make a complain";
+				$code = 201;
+				$this->out($code, $message);
+			}
 		}else{
-			$message = "User Already Registered";
+			$message = "Matric No already registered, try another or make a complain";
 			$code = 201;
 			$this->out($code, $message);
-		}	
+		}
 	}
 
 	public function logintest($id, $password, $table) {
@@ -838,7 +879,7 @@ class Mailing extends Utility{
 				      </th>
 				    </table>
 				    <hr style="margin-top:10px;margin-top:75px;"/>
-				    <p style="text-align:center;margin-bottom:15px;"><small style="text-align:center;font-family:Courier New, Courier, monospace;font-size:10px;color#666;">Organized with  <span style="color:red;">&hearts; </span>  </small> <a href="https://fstackdev.net/" style="color:#666;"> By FStackDev </a> | <a href="#" style="color:#666;"> GDSC Landmark University | NACOSS LMU</a></p>
+				    <p style="text-align:center;margin-bottom:15px;"><small style="text-align:center;font-family:Courier New, Courier, monospace;font-size:10px;color#666;">Organized with  <span style="color:red;">&hearts; </span>  </small> <a href="https://fstackdev.net/" style="color:#666;"> By FStackDev </a> | <a style="color:#666;"> GDSC Landmark University | NACOSS LMU</a></p>
 				    <p>&nbsp;</p>
 				  </div>
 				</div>';

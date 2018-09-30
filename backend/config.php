@@ -1,8 +1,13 @@
 <?php
 
-define('DB_HOST', 'localhost');
-define('DB_USERNAME', 'root');
-define('DB_PASSWORD', '');
+// define('DB_HOST', 'localhost');
+// define('DB_USERNAME', 'root');
+// define('DB_PASSWORD', '');
+// define('DB_DATABASE', 'leap_hk');
+
+define('DB_HOST', 'leap.lmu.edu.ng');
+define('DB_USERNAME', 'stdus');
+define('DB_PASSWORD', 'u53D!5n@W');
 define('DB_DATABASE', 'leap_hk');
 
 
