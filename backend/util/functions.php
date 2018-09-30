@@ -450,7 +450,7 @@ class Auth extends Utility{
 			try {
 				$send_verify = new Mailing();
 				if($send_verify->leap_passRecovery($param, $token)){
-					$activate = "UPDATE participant SET act_status = 1 WHERE act_code = '$ref' and email = '$mbox'";
+					$activate = "UPDATE participant SET recovery ='$token' WHERE email = '$param'";
 					if($this->run_query($activate)){
 						// return "done";
 						$message = "reset password link has been sent to your mail";
