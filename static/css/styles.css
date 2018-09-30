@@ -1,9 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i');
+@font-face{font-family:'Rezland';src:url('../fonts/REZ.ttf');}
 
-
-/*---------------------------------
-* 02. Common
------------------------------------*/
 body {
   font-family: 'Poppins', sans-serif;
   font-size: 14px;
@@ -95,10 +92,6 @@ img {
   background: #374574;
   color: #fff;
 }
-
-/*---------------------------------
-* 01. Loading
------------------------------------*/
 #loading {
   position: fixed;
   top: 0;
@@ -162,10 +155,6 @@ img {
     transform: rotate(360deg);
   }
 }
-
-/*---------------------------------
-* 03. Section title
------------------------------------*/
 .section-title {
   position: relative;
   text-align: center;
@@ -261,10 +250,6 @@ img {
 .faq-row .no {
   border-radius: 100% 50% 50% 100% / 75% 69% 69% 75%; 
 }
-
-/*-----------------------------------------
-* 04. Buttons
------------------------------------------*/
 .m-btn {
   padding: 10px 30px;
   border: 1px solid;
@@ -307,11 +292,6 @@ img {
 .m-btn-theme2nd:hover {
   color: #fff; 
 }
-
-/*-----------------------------------------
-*  05. Owl
------------------------------------------*/
-
 .owl-dots {
   text-align: center;
 }
@@ -348,10 +328,6 @@ img {
 .owl-nav .owl-next:hover {
   background: #000;
 }
-
-/*---------------------------------
-* 06. Page Title
------------------------------------*/
 .page-title-section {
   padding: 140px 0 60px;
   position: relative;
@@ -418,10 +394,6 @@ img {
     padding: 100px 0 40px;
   }
 }
-
-/*---------------------------------
-* 07. Header
------------------------------------*/
 .header-nav {
   padding: 15px 10px;
   -webkit-transition: all 0.2s ease;
@@ -842,11 +814,6 @@ img {
     padding: 0 0 30px;
   }
 }
-
-
-/*-----------------------------------------
-*  Banner 01
------------------------------------------*/
 .home-banner-01 {
   overflow: hidden;
   position: relative;
@@ -947,10 +914,6 @@ img {
     padding: 0 0 20px;
   }
 }
-
-/*-----------------------------------------
-*  09. Feature Box
------------------------------------------*/
 .feature-box {
   text-align: center;
   background: #fff;
@@ -1180,10 +1143,6 @@ img {
     letter-spacing: 0.5px;
     border-radius: 30px;
 }
-
-/*-----------------------------------------
-*  10. Tabs
------------------------------------------*/
 .tab-style-1 .nav {
   background: #fff;
   border-bottom: 1px solid #ddd;
@@ -1262,10 +1221,6 @@ img {
     font-size: 16px;
   }
 }
-
-/*-----------------------------------------
-*  11. Testimonial
------------------------------------------*/
 .testimonial-col {
   border: 1px solid #e5e8ed;
   margin: 0 10px 30px 50px;
@@ -1321,18 +1276,11 @@ img {
   line-height: 30px;
   text-align: center;
 }
-
-/*-----------------------------------------
-*  12. About us Section
------------------------------------------*/
 .aboutus-section {
   background-repeat: no-repeat;
   background-size: 100% auto;
   background-position: bottom;  
 }
-/*-----------------------------------------
-*  13. Video Box
------------------------------------------*/
 .video-box {
   position: relative;
   border-radius: 10px;
@@ -1358,10 +1306,6 @@ img {
   border-radius: 50%;
   box-shadow: 0px 0px 11px 7px rgba(0, 0, 0, 0.28);
 }
-
-/*-----------------------------------------
-*  14. counter section
------------------------------------------*/
 .counter-section {
   padding: 10px 0 100px;
 }
@@ -1396,10 +1340,6 @@ img {
     padding-bottom: 40px;
   }
 }
-
-/*-----------------------------------------
-*  15. Our Team
------------------------------------------*/
 .our-team {
   text-align: center;
   border-radius: 3px;
@@ -1434,10 +1374,6 @@ img {
   margin: 0;
   font-size: 12px;
 }
-
-/*-----------------------------------------
-*  16. Price Table
------------------------------------------*/
 .price-table {
   border: 1px solid #d5d8ea;
   background: #fff;
@@ -1632,10 +1568,6 @@ img {
     padding: 10px 8px;
   }
 }
-
-/*-----------------------------------------
-*  FAQ
------------------------------------------*/
 .faq-row {
   background: #fff;
   box-shadow: 0 10px 20px 0 rgba(116,103,91,.059);
@@ -1674,10 +1606,6 @@ img {
 .faq-row .faq-body p:last-child {
   margin-bottom: 0;
 }
-
-/*-----------------------------------------
-*  17. Blog
------------------------------------------*/
 .blog-item {
   background: #fff;
   border-radius: 5px;
@@ -1731,10 +1659,6 @@ img {
   display: inline-block;
   vertical-align: middle;
 }
-
-/*---------------------------------
-* 19. Footer
------------------------------------*/
 .footer {
   position: relative;
   overflow: hidden;
@@ -1882,10 +1806,6 @@ img {
     margin-top: 20px;
   }
 }
-
-/*-----------------------------------------
-* Call To Action
------------------------------------------*/
 .call-to-action {
   padding: 60px 0;
   position: relative;
@@ -1980,11 +1900,6 @@ img {
   display: block;
   padding-top: 8px;
 }
-
-/*-----------------------------------------
-* 20 Contact Us
------------------------------------------*/
-
 .form-group {
   position: relative;
   width: 100%;
@@ -2108,11 +2023,6 @@ img {
   display: inline-block;
   vertical-align: middle;
 }
-
-
-/*-----------------------------------------
-*  Background Properties
------------------------------------------*/
 .bg-no-repeat { background-repeat: no-repeat; }
 .bg-repeat-x { background-repeat: repeat-x; }
 .bg-repeat-y { background-repeat: repeat-y; }
@@ -2121,10 +2031,6 @@ img {
 .bg-center-right { background-position: center right; }
 .bg-center-left { background-position: center left; }
 .bg-fixed { background-attachment: fixed;  }
-
-/*==============================
-  Margins
-================================*/
 
 /*Margin All*/
 .m-auto-all { margin: auto;}

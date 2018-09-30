@@ -276,6 +276,7 @@ $(document).ready(function(){
             'Your entry was successful! Please check your email for further details.',
             'success'
           );
+          $('#reg-form').reset();
         } else{
           swal(
             'Error',

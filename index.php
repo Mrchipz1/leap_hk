@@ -56,6 +56,18 @@
     <div class="load"><img src="./static/img/loader.gif" alt=""></div>
   </div>
   <!-- / -->
+
+  <!-- Header -->
+  <header>
+    <nav class="navbar header-nav fixed-top navbar-expand-lg header-nav-light">
+      <div class="container">
+        <!-- Brand -->
+        <h1 class="font-alt animated fadeInUp" style="font-family: 'Rezland', sans-serif;">LEAP</h1>
+        <!-- / -->
+      </div><!-- Container -->
+    </nav> <!-- Navbar -->
+  </header>
+  <!-- Header End -->
   
   <!-- Main Start -->
   <main>
