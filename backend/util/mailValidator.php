@@ -9,7 +9,7 @@
     }
     
     public function validate_by_domain($email_address) {
-      if($email_address == "std@lmu.edu.ng" || "student@lmu.edu.ng") {
+      if($email_address == "std@lmu.edu.ng") {
         return false;
       }
       $domain = $this->get_domain( trim( $email_address ) );
