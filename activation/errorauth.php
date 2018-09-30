@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>3plecoin - Reset Password</title>
+	<title>LMU Leap - Reset Password</title>
 	<link rel="stylesheet" href="css/app.css">
 	<link rel="stylesheet" href="css/temp.css">
 	<link rel="stylesheet" href="css/animate.css">

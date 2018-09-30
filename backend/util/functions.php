@@ -22,7 +22,7 @@ class Utility {
 	public function getting_level($total_amount){
 		if($total_amount == 0){
 			return 0;
-		}else{
+		}else{ 
 			return abs($total_amount / 10);
 		}
 	}
@@ -61,18 +61,18 @@ class Utility {
 		$ref = $obj['ref'];
 		$mbox = $obj['email'];
 
-		$detailsIsCorrect = $this->getOne("SELECT * FROM customers WHERE activationCode = '$ref' and email = '$mbox'");
+		$detailsIsCorrect = $this->getOne("SELECT * FROM participant WHERE act_code = '$ref' and email = '$mbox'");
 
 		if($detailsIsCorrect){
-			if($detailsIsCorrect['activationStatus'] == 0){
-				$activate = "UPDATE customers SET activationStatus = 1 WHERE activationCode = '$ref' and email = '$mbox'";
+			if($detailsIsCorrect['act_code'] == 0){
+				$activate = "UPDATE participant SET act_status = 1 WHERE act_code = '$ref' and email = '$mbox'";
 				if($this->run_query($activate)){
 					return "done";
 				} else {
 					return "couldn't verify";
 				}
 
-			} elseif($detailsIsCorrect['activationStatus'] == 1){
+			} elseif($detailsIsCorrect['act_status'] == 1){
 				return "already verified";
 			} else {
 				return "error";
@@ -151,7 +151,7 @@ class Utility {
 			$newpasshash = passwordHash::hash($newpass);
 
 
-			$q1 = $this->getOne("SELECT * FROM passrecovery where email = '$umail' and recovery_code = '$hash' and status = 0 ORDER BY id DESC");
+			$q1 = $this->getOne("SELECT * FROM participant where email = '$umail' and recovery_code = '$hash' and status = 0 ORDER BY id DESC");
 			$q2 = $this->DBcon->query("UPDATE passrecovery SET status = 1 WHERE email = '$umail'");
 			$q3 = $this->DBcon->query("UPDATE customers SET password = '$newpasshash', cleartext = '$newpass' WHERE email = '$umail'");
 
@@ -776,7 +776,7 @@ class Mailing extends Utility{
 				    <table style="width:100%;">
 				      <th>
 				        <td style="width:25%;"></td>
-				        <td style="background-color:black;with:50%;text-align:center;padding:15px;"><a href="https://localhost/leap_hk/activation/index.php?email='. $email .'&action=activate&token='.$token . '"  style="margin-left: auto; margin-right: auto;text-decoration:none;color: white;text-align:center;font-family:Courier New, Courier, monospace;font-weight:600;letter-spacing:2px;background-color:black;padding:15px;">CLICK TO ACTIVATE</a></td>
+				        <td style="background-color:black;with:50%;text-align:center;padding:15px;"><a href="http://localhost/leap_hk/activation/index.php?email='. $email .'&action=activate&token='.$token . '"  style="margin-left: auto; margin-right: auto;text-decoration:none;color: white;text-align:center;font-family:Courier New, Courier, monospace;font-weight:600;letter-spacing:2px;background-color:black;padding:15px;">CLICK TO ACTIVATE</a></td>
 				        <td style="width:25%;"></td>
 				      </th>
 				    </table>
