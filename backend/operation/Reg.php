@@ -42,7 +42,7 @@
 			$auth->out($code, $message);
 		}
 	}else{
-		$message = "input error";
+		$message = "ensure all fields are field";
 		$code = 201;
 		$auth->out($code, $message);
 	}
